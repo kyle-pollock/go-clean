@@ -3,15 +3,19 @@ package rest
 import (
 	"log"
 	"net/http"
+
+	"github.com/kyle-pollock/go-clean/pkg/userservice"
 )
 
 type rest struct {
-	isReady func() error
+	isReady     func() error
+	userService *userservice.UserService
 }
 
-func New(isReady func() error) *rest {
+func New(isReady func() error, userService *userservice.UserService) *rest {
 	return &rest{
-		isReady: isReady,
+		isReady:     isReady,
+		userService: userService,
 	}
 }
 
@@ -19,6 +23,7 @@ func (rest *rest) NewHandler() http.Handler {
 	mux := http.NewServeMux()
 	mux.Handle("/readyz", http.HandlerFunc(rest.readyz))
 	mux.Handle("/livez", http.HandlerFunc(rest.livez))
+	mux.Handle("/users", http.HandlerFunc(rest.getUsers))
 	return mux
 }
 

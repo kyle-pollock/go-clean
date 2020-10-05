@@ -6,15 +6,20 @@ import (
 	"testing"
 
 	"github.com/kyle-pollock/go-clean/pkg/http/rest"
+	"github.com/kyle-pollock/go-clean/pkg/testdoubles"
+	"github.com/kyle-pollock/go-clean/pkg/userservice"
 )
 
 const (
 	errorFormat = "Got status code '%d' but expected '%d'"
 )
 
-func newServer(path string, healthFn func() error) *http.ServeMux {
+func newServer(path string, healthFn func() error, userService rest.UserService) *http.ServeMux {
 	server := http.NewServeMux()
-	server.Handle(path, rest.New(healthFn).NewHandler())
+	server.Handle(path, rest.New(
+		healthFn,
+		userservice.New(&testdoubles.UserRepositoryStub{}),
+	).NewHandler())
 	return server
 }
 
@@ -23,6 +28,7 @@ func TestRest(t *testing.T) {
 	server := newServer(
 		"/",
 		isReadyFn,
+		&testdoubles.UserServiceStub{},
 	)
 	expectedStatusCode := http.StatusOK
 
