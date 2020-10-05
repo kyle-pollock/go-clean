@@ -4,9 +4,9 @@ import (
 	"github.com/kyle-pollock/go-clean/pkg/entities"
 )
 
-type UserRepositoryStub struct{}
+type UserServiceStub struct{}
 
-func (r *UserRepositoryStub) GetAllUsers() ([]*entities.User, error) {
+func (s *UserServiceStub) GetAllUsers() ([]*entities.User, error) {
 	return []*entities.User{
 		entities.NewUser(1, "testuser greene"),
 		entities.NewUser(2, "testuser foo"),

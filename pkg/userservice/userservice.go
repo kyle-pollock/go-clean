@@ -8,14 +8,14 @@ type Repository interface {
 	GetAllUsers() ([]*entities.User, error)
 }
 
-type userService struct {
+type UserService struct {
 	repository Repository
 }
 
-func New(r Repository) *userService {
-	return &userService{repository: r}
+func New(r Repository) *UserService {
+	return &UserService{repository: r}
 }
 
-func (s *userService) GetAllUsers() ([]*entities.User, error) {
+func (s *UserService) GetAllUsers() ([]*entities.User, error) {
 	return s.repository.GetAllUsers()
 }

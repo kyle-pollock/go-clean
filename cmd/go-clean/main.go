@@ -8,6 +8,8 @@ import (
 	"os"
 
 	"github.com/kyle-pollock/go-clean/pkg/http/rest"
+	mysql "github.com/kyle-pollock/go-clean/pkg/storage/mysql/user"
+	"github.com/kyle-pollock/go-clean/pkg/userservice"
 )
 
 func main() {
@@ -17,7 +19,14 @@ func main() {
 	port := flag.String("port", os.Getenv("GO_PORT"), "The port to listen on")
 	flag.Parse()
 
-	rest := rest.New(isReady)
+	db, err := mysql.NewMySQLTest()
+	if err != nil {
+		log.Fatalf("Error in initializing database: %v", err)
+	}
+	userRepo := mysql.New(db)
+	userService := userservice.New(userRepo)
+
+	rest := rest.New(isReady, userService)
 
 	server := &http.Server{
 		Addr:    fmt.Sprintf("%s:%s", *host, *port),
