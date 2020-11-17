@@ -2,17 +2,12 @@ package rest
 
 import (
 	"encoding/json"
-	"github.com/kyle-pollock/go-clean/pkg/entities"
 	"log"
 	"net/http"
 )
 
-type UserService interface {
-	GetAllUsers() ([]*entities.User, error)
-}
-
 func (rest *rest) getUsers(w http.ResponseWriter, r *http.Request) {
-	users, err := rest.userService.GetAllUsers()
+	users, err := rest.userInteractor.GetAllUsers()
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)

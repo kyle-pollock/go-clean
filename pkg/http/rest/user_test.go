@@ -10,13 +10,10 @@ import (
 )
 
 func TestGetUsers(t *testing.T) {
-	isReadyFn := func() error { return nil }
-	server := newServer(
-		"/",
-		isReadyFn,
-		&testdoubles.UserServiceStub{},
-	)
 	expectedStatusCode := http.StatusOK
+	server := serverSetup(
+		&testdoubles.UserInteractorStub{},
+	)
 
 	t.Run("get users", func(t *testing.T) {
 		t.Parallel()
