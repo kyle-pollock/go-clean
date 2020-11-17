@@ -8,14 +8,14 @@ import (
 )
 
 type rest struct {
-	isReady     func() error
-	userService *user.Service
+	isReady        func() error
+	userInteractor user.Interactor
 }
 
-func New(isReady func() error, userService *user.Service) *rest {
+func New(isReady func() error, userInteractor user.Interactor) *rest {
 	return &rest{
-		isReady:     isReady,
-		userService: userService,
+		isReady:        isReady,
+		userInteractor: userInteractor,
 	}
 }
 

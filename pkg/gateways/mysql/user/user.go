@@ -7,24 +7,24 @@ import (
 	"github.com/kyle-pollock/go-clean/pkg/entities"
 )
 
-type userRepo struct {
+type userGateway struct {
 	db *sql.DB
 }
 
-func New(db *sql.DB) *userRepo {
-	return &userRepo{db: db}
+func New(db *sql.DB) *userGateway {
+	return &userGateway{db: db}
 }
 
-func (repo *userRepo) GetAllUsers() ([]*entities.User, error) {
-	dtos, err := repo.getDTOs()
+func (gateway *userGateway) GetAllUsers() ([]*entities.User, error) {
+	dtos, err := gateway.getDTOs()
 	if err != nil {
 		return nil, err
 	}
 	return userMapper(dtos), nil
 }
 
-func (repo *userRepo) getDTOs() ([]*userDTO, error) {
-	rows, err := repo.db.Query(`
+func (gateway *userGateway) getDTOs() ([]*userDTO, error) {
+	rows, err := gateway.db.Query(`
 		SELECT id, name
 		FROM goclean.user;
 	`)

@@ -4,19 +4,23 @@ import (
 	"github.com/kyle-pollock/go-clean/pkg/entities"
 )
 
+type Interactor interface {
+	GetAllUsers() ([]*UserResponseModel, error)
+}
+
 type Gateway interface {
 	GetAllUsers() ([]*entities.User, error)
 }
 
-type Service struct {
+type service struct {
 	gateway Gateway
 }
 
-func New(r Gateway) *Service {
-	return &Service{gateway: r}
+func New(r Gateway) Interactor {
+	return &service{gateway: r}
 }
 
-func (s *Service) GetAllUsers() ([]*UserResponseModel, error) {
+func (s *service) GetAllUsers() ([]*UserResponseModel, error) {
 	users, err := s.gateway.GetAllUsers()
 	if err != nil {
 		return nil, err

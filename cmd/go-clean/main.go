@@ -7,14 +7,14 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/kyle-pollock/go-clean/pkg/http/rest"
 	mysql "github.com/kyle-pollock/go-clean/pkg/gateways/mysql/user"
+	"github.com/kyle-pollock/go-clean/pkg/http/rest"
 	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
 )
 
 var (
-	host   = os.Getenv("GO_HOST")
-	port   = os.Getenv("GO_PORT")
+	host = os.Getenv("GO_HOST")
+	port = os.Getenv("GO_PORT")
 )
 
 func init() {
@@ -38,10 +38,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error in initializing database: %v", err)
 	}
-	userGateway := mysql.New(db)
-	userService := user.New(userGateway)
+	userInteractor := user.New(mysql.New(db))
 
-	rest := rest.New(isReady, userService)
+	rest := rest.New(isReady, userInteractor)
 
 	server := &http.Server{
 		Addr:    fmt.Sprintf("%s:%s", host, port),
