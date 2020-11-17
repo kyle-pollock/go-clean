@@ -1,4 +1,4 @@
-package userservice
+package user
 
 import (
 	"github.com/kyle-pollock/go-clean/pkg/entities"

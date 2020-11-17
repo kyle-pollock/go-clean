@@ -9,7 +9,7 @@ import (
 
 	"github.com/kyle-pollock/go-clean/pkg/http/rest"
 	mysql "github.com/kyle-pollock/go-clean/pkg/storage/mysql/user"
-	"github.com/kyle-pollock/go-clean/pkg/userservice"
+	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
 )
 
 var (
@@ -39,7 +39,7 @@ func main() {
 		log.Fatalf("Error in initializing database: %v", err)
 	}
 	userRepo := mysql.New(db)
-	userService := userservice.New(userRepo)
+	userService := user.New(userRepo)
 
 	rest := rest.New(isReady, userService)
 

@@ -4,15 +4,15 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/kyle-pollock/go-clean/pkg/userservice"
+	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
 )
 
 type rest struct {
 	isReady     func() error
-	userService *userservice.UserService
+	userService *user.UserService
 }
 
-func New(isReady func() error, userService *userservice.UserService) *rest {
+func New(isReady func() error, userService *user.UserService) *rest {
 	return &rest{
 		isReady:     isReady,
 		userService: userService,
