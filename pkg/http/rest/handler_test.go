@@ -7,7 +7,7 @@ import (
 
 	"github.com/kyle-pollock/go-clean/pkg/http/rest"
 	"github.com/kyle-pollock/go-clean/pkg/testdoubles"
-	"github.com/kyle-pollock/go-clean/pkg/userservice"
+	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
 )
 
 const (
@@ -18,7 +18,7 @@ func newServer(path string, healthFn func() error, userService rest.UserService)
 	server := http.NewServeMux()
 	server.Handle(path, rest.New(
 		healthFn,
-		userservice.New(&testdoubles.UserRepositoryStub{}),
+		user.New(&testdoubles.UserRepositoryStub{}),
 	).NewHandler())
 	return server
 }

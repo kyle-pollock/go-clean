@@ -1,4 +1,4 @@
-package userservice
+package user
 
 import (
 	"github.com/kyle-pollock/go-clean/pkg/testdoubles"
@@ -17,7 +17,7 @@ func Test(t *testing.T) {
 				t.Error(err)
 			}
 			if len(users) == 0 {
-				t.Error("userservice failed to read")
+				t.Error("user failed to read")
 			}
 		})
 	})

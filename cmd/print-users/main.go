@@ -5,7 +5,7 @@ import (
 	"log"
 
 	mysql "github.com/kyle-pollock/go-clean/pkg/storage/mysql/user"
-	"github.com/kyle-pollock/go-clean/pkg/userservice"
+	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
 )
 
 func main() {
@@ -14,7 +14,7 @@ func main() {
 		log.Fatalf("Error in initializing database: %v", err)
 	}
 	userRepo := mysql.New(db)
-	userService := userservice.New(userRepo)
+	userService := user.New(userRepo)
 
 	users, err := userService.GetAllUsers()
 
