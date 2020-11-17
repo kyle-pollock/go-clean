@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	mysql "github.com/kyle-pollock/go-clean/pkg/storage/mysql/user"
+	mysql "github.com/kyle-pollock/go-clean/pkg/gateways/mysql/user"
 	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
 )
 
