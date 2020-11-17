@@ -8,14 +8,30 @@ type Gateway interface {
 	GetAllUsers() ([]*entities.User, error)
 }
 
-type UserService struct {
-	repository Gateway
+type Service struct {
+	gateway Gateway
 }
 
-func New(r Gateway) *UserService {
-	return &UserService{repository: r}
+func New(r Gateway) *Service {
+	return &Service{gateway: r}
 }
 
-func (s *UserService) GetAllUsers() ([]*entities.User, error) {
-	return s.repository.GetAllUsers()
+func (s *Service) GetAllUsers() ([]*UserResponseModel, error) {
+	users, err := s.gateway.GetAllUsers()
+	if err != nil {
+		return nil, err
+	}
+
+	var response []*UserResponseModel
+	for _, user := range users {
+		response = append(response, mapUserEntityToResponseModel(user))
+	}
+	return response, nil
+}
+
+func mapUserEntityToResponseModel(user *entities.User) *UserResponseModel {
+	return &UserResponseModel{
+		ID: user.ID(),
+		Name: user.Name(),
+	}
 }
