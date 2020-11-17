@@ -9,10 +9,10 @@ import (
 
 type rest struct {
 	isReady     func() error
-	userService *user.UserService
+	userService *user.Service
 }
 
-func New(isReady func() error, userService *user.UserService) *rest {
+func New(isReady func() error, userService *user.Service) *rest {
 	return &rest{
 		isReady:     isReady,
 		userService: userService,
