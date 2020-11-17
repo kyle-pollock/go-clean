@@ -1,17 +1,16 @@
-package user
+package user_test
 
 import (
 	"testing"
 
 	"github.com/kyle-pollock/go-clean/pkg/testdoubles"
+	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
 )
 
 func Test(t *testing.T) {
-	repo := &testdoubles.UserGatewayStub{}
-
+	userInteractor := user.New(&testdoubles.UserGatewayStub{})
 	t.Run("get users", func(t *testing.T) {
 		t.Parallel()
-		userInteractor := New(repo)
 		users, err := userInteractor.GetAllUsers()
 		if err != nil {
 			t.Error(err)

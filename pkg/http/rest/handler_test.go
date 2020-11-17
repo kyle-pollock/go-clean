@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	errorFormat = "Got status code '%d' but expected '%d'"
+	errorFormat = "got status code '%d' but expected '%d'"
 )
 
 func serverSetup(userInteractor user.Interactor) *http.ServeMux {

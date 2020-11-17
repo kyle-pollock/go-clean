@@ -11,12 +11,14 @@ import (
 func main() {
 	db, err := mysql.NewMySQLTest()
 	if err != nil {
-		log.Fatalf("Error in initializing database: %v", err)
+		log.Fatalf("error in initializing database: %v", err)
 	}
-	userRepo := mysql.New(db)
-	userService := user.New(userRepo)
+	userInteractor := user.New(mysql.New(db))
 
-	users, err := userService.GetAllUsers()
+	users, err := userInteractor.GetAllUsers()
+	if err != nil {
+		log.Fatalf("error getting all users: %v", err)
+	}
 
 	for _, user := range users {
 		fmt.Print(user)

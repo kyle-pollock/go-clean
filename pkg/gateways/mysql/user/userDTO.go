@@ -10,7 +10,7 @@ type userDTO struct {
 }
 
 func userMapper(dtos []*userDTO) []*entities.User {
-	users := []*entities.User{}
+	var users []*entities.User
 	for _, dto := range dtos {
 		users = append(users, entities.NewUser(
 			dto.id,
