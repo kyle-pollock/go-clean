@@ -6,7 +6,7 @@ import (
 )
 
 func Test(t *testing.T) {
-	repo := &testdoubles.UserRepositoryStub{}
+	repo := &testdoubles.UserGatewayStub{}
 
 	t.Run("CRUD ops", func(t *testing.T) {
 		t.Run("get users", func(t *testing.T) {

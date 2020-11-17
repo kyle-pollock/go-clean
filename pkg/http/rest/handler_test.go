@@ -18,7 +18,7 @@ func newServer(path string, healthFn func() error, userService rest.UserService)
 	server := http.NewServeMux()
 	server.Handle(path, rest.New(
 		healthFn,
-		user.New(&testdoubles.UserRepositoryStub{}),
+		user.New(&testdoubles.UserGatewayStub{}),
 	).NewHandler())
 	return server
 }

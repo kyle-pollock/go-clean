@@ -4,15 +4,15 @@ import (
 	"github.com/kyle-pollock/go-clean/pkg/entities"
 )
 
-type Repository interface {
+type Gateway interface {
 	GetAllUsers() ([]*entities.User, error)
 }
 
 type UserService struct {
-	repository Repository
+	repository Gateway
 }
 
-func New(r Repository) *UserService {
+func New(r Gateway) *UserService {
 	return &UserService{repository: r}
 }
 

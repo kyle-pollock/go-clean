@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/kyle-pollock/go-clean/pkg/http/rest"
-	mysql "github.com/kyle-pollock/go-clean/pkg/storage/mysql/user"
+	mysql "github.com/kyle-pollock/go-clean/pkg/gateways/mysql/user"
 	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
 )
 
@@ -38,8 +38,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error in initializing database: %v", err)
 	}
-	userRepo := mysql.New(db)
-	userService := user.New(userRepo)
+	userGateway := mysql.New(db)
+	userService := user.New(userGateway)
 
 	rest := rest.New(isReady, userService)
 
