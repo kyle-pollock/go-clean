@@ -14,6 +14,6 @@ Example project of clean architecture in Go.
 
 ## Test
 
-`make test` to run all tests including long running tests such as integration tests.
+`make test` to run all tests including long-running tests such as integration tests.
 
 `make test-short` to run only short tests such as unit tests.

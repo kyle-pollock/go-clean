@@ -71,7 +71,7 @@ func NewMySQL(config Config) (*sql.DB, error) {
 func initConnection(connectionString string) (*sql.DB, error) {
 	db, dbConnErr := sql.Open("mysql", connectionString)
 	if dbConnErr != nil {
-		return nil, fmt.Errorf("Failed to create database connection: %w", dbConnErr)
+		return nil, fmt.Errorf("failed to create database connection: %w", dbConnErr)
 	}
 
 	db.SetMaxOpenConns(10)

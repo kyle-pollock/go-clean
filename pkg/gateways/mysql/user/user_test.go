@@ -21,7 +21,7 @@ func TestGetUser(t *testing.T) {
 	}
 	defer Teardown(db, "./teardown_test.sql")
 
-	repo := New(db)
+	gateway := New(db)
 
 	t.Run("return users", func(t *testing.T) {
 		wantUsers := []*entities.User{
@@ -29,7 +29,7 @@ func TestGetUser(t *testing.T) {
 			entities.NewUser(2, "testuser foo"),
 			entities.NewUser(3, "testuser bar"),
 		}
-		users, err := repo.GetAllUsers()
+		users, err := gateway.GetAllUsers()
 		if err != nil {
 			t.Errorf("failed to get users: %v", err)
 		}

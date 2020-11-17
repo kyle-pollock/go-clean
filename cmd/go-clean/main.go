@@ -36,7 +36,7 @@ func main() {
 
 	db, err := mysql.NewMySQLTest()
 	if err != nil {
-		log.Fatalf("Error in initializing database: %v", err)
+		log.Fatalf("error in initializing database: %v", err)
 	}
 	userInteractor := user.New(mysql.New(db))
 
