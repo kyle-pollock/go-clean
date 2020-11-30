@@ -4,10 +4,14 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	presenter "github.com/kyle-pollock/go-clean/pkg/presenters/json"
 )
 
 func (rest *rest) getUsers(w http.ResponseWriter, r *http.Request) {
-	users, err := rest.userInteractor.GetAllUsers()
+	presenter := new(presenter.Presenter)
+
+	err := rest.userInteractor.GetAllUsers()
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -15,8 +19,8 @@ func (rest *rest) getUsers(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(w).Encode(users); err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+	if err := json.NewEncoder(w).Encode(presenter.ViewModel()); err != nil {
 		log.Print(err)
+		w.WriteHeader(http.StatusInternalServerError)
 	}
 }

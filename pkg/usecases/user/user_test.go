@@ -11,7 +11,7 @@ func Test(t *testing.T) {
 	userInteractor := user.New(&testdoubles.UserGatewayStub{})
 	t.Run("get users", func(t *testing.T) {
 		t.Parallel()
-		users, err := userInteractor.GetAllUsers()
+		users, err := userInteractor.GetAllUsers(context.Background())
 		if err != nil {
 			t.Error(err)
 		}
