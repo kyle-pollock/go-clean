@@ -27,7 +27,7 @@ func serverSetup(userInteractor user.Interactor) *http.ServeMux {
 
 func TestRest(t *testing.T) {
 	server := serverSetup(
-		&testdoubles.UserInteractorStub{},
+		&testdoubles.UserInteractorDummy{},
 	)
 	expectedStatusCode := http.StatusOK
 

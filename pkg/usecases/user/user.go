@@ -5,7 +5,11 @@ import (
 )
 
 type Interactor interface {
-	GetAllUsers() ([]*UserResponseModel, error)
+	GetAllUsers(Presenter) error
+}
+
+type Presenter interface {
+	Present([]*UserResponseModel)
 }
 
 type Gateway interface {
@@ -20,22 +24,24 @@ func New(r Gateway) Interactor {
 	return &service{gateway: r}
 }
 
-func (s *service) GetAllUsers() ([]*UserResponseModel, error) {
+func (s *service) GetAllUsers(presenter Presenter) error {
 	users, err := s.gateway.GetAllUsers()
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	var response []*UserResponseModel
+	var responseModel []*UserResponseModel
 	for _, user := range users {
-		response = append(response, mapUserEntityToResponseModel(user))
+		responseModel = append(responseModel, mapUserEntityToResponseModel(user))
 	}
-	return response, nil
+	presenter.Present(responseModel)
+
+	return nil
 }
 
 func mapUserEntityToResponseModel(user *entities.User) *UserResponseModel {
 	return &UserResponseModel{
-		ID: user.ID(),
+		ID:   user.ID(),
 		Name: user.Name(),
 	}
 }

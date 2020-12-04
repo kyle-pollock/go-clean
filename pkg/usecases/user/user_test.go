@@ -8,15 +8,22 @@ import (
 )
 
 func Test(t *testing.T) {
-	userInteractor := user.New(&testdoubles.UserGatewayStub{})
-	t.Run("get users", func(t *testing.T) {
-		t.Parallel()
-		users, err := userInteractor.GetAllUsers()
-		if err != nil {
-			t.Error(err)
-		}
-		if len(users) == 0 {
-			t.Error("user failed to read")
-		}
-	})
+
+	presenter := new(testdoubles.UsersPresenterSpy)
+	useCase := user.New(new(testdoubles.UserGatewayStub))
+
+	err := useCase.GetAllUsers(presenter)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if !presenter.PresentWasCalled {
+		t.Error("usecase failed to call presenter")
+	}
+
+	viewModel := presenter.ViewModel
+
+	if len(viewModel) == 0 {
+		t.Error("usecase failed to read users")
+	}
 }
