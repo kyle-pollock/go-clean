@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/kyle-pollock/go-clean/pkg/entities"
+	"github.com/kyle-pollock/go-clean/entities"
 )
 
 type userGateway struct {

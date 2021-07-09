@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/kyle-pollock/go-clean/pkg/testdoubles"
+	"github.com/kyle-pollock/go-clean/testdoubles"
 )
 
 func TestGetUsers(t *testing.T) {

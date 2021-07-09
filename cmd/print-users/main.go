@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	mysql "github.com/kyle-pollock/go-clean/pkg/gateways/mysql/user"
-	"github.com/kyle-pollock/go-clean/pkg/presenters"
-	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
+	mysql "github.com/kyle-pollock/go-clean/gateways/mysql/user"
+	"github.com/kyle-pollock/go-clean/presenters"
+	"github.com/kyle-pollock/go-clean/usecases/user"
 )
 
 func main() {

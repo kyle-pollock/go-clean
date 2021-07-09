@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/kyle-pollock/go-clean/pkg/entities"
+	"github.com/kyle-pollock/go-clean/entities"
 )
 
 type userDTO struct {

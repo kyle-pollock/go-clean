@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
+	"github.com/kyle-pollock/go-clean/usecases/user"
 )
 
 type rest struct {

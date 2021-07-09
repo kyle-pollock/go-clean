@@ -1,7 +1,7 @@
 package testdoubles
 
 import (
-	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
+	"github.com/kyle-pollock/go-clean/usecases/user"
 )
 
 type UsersPresenterSpy struct {

@@ -5,10 +5,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/kyle-pollock/go-clean/pkg/testdoubles"
-	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
+	"github.com/kyle-pollock/go-clean/testdoubles"
+	"github.com/kyle-pollock/go-clean/usecases/user"
 
-	"github.com/kyle-pollock/go-clean/pkg/http/rest"
+	"github.com/kyle-pollock/go-clean/http/rest"
 )
 
 const (
