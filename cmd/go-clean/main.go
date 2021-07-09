@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"os"
 
-	mysql "github.com/kyle-pollock/go-clean/pkg/gateways/mysql/user"
-	"github.com/kyle-pollock/go-clean/pkg/http/rest"
-	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
+	mysql "github.com/kyle-pollock/go-clean/gateways/mysql/user"
+	"github.com/kyle-pollock/go-clean/http/rest"
+	"github.com/kyle-pollock/go-clean/usecases/user"
 )
 
 var (

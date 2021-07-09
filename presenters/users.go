@@ -1,6 +1,6 @@
 package presenters
 
-import "github.com/kyle-pollock/go-clean/pkg/usecases/user"
+import "github.com/kyle-pollock/go-clean/usecases/user"
 
 type ViewModel struct {
 	Users []*User `json:"users"`

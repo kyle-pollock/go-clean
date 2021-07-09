@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/kyle-pollock/go-clean/pkg/presenters"
+	"github.com/kyle-pollock/go-clean/presenters"
 )
 
 func (rest *rest) getUsers(w http.ResponseWriter, r *http.Request) {

@@ -3,7 +3,7 @@ package presenters
 import (
 	"testing"
 
-	"github.com/kyle-pollock/go-clean/pkg/usecases/user"
+	"github.com/kyle-pollock/go-clean/usecases/user"
 )
 
 func TestUsersPresenter(t *testing.T) {

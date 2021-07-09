@@ -1,6 +1,6 @@
 package testdoubles
 
-import "github.com/kyle-pollock/go-clean/pkg/usecases/user"
+import "github.com/kyle-pollock/go-clean/usecases/user"
 
 type UserInteractorDummy struct{}
 
